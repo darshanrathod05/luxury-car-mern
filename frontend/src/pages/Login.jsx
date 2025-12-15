@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../services/api";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,23 +17,46 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login-container">
+      {/* Left Image Section */}
+      <div className="login-image">
+        <img
+          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+          alt="Luxury Car"
+        />
+      </div>
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br /><br />
+      {/* Right Form Section */}
+      <div className="login-form">
+        <h1 className="brand">🚗 Elite Drive</h1>
+        <h2>Sign in to your account</h2>
+        <p className="subtitle">Enter your details to proceed further</p>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br /><br />
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <button onClick={handleLogin}>Login</button>
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button onClick={handleLogin}>Sign In</button>
+
+        {/* Register link */}
+        <p style={{ marginTop: "16px", fontSize: "14px" }}>
+          New user?{" "}
+          <span
+            style={{ color: "#4f46e5", cursor: "pointer", fontWeight: "600" }}
+            onClick={() => (window.location.href = "/register")}
+          >
+            Register
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

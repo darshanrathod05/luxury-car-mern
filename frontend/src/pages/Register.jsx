@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../services/api";
+import "./Register.css";
 
 function Register() {
   const [name, setName] = useState("");
@@ -17,29 +18,52 @@ function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className="register-page">
+      {/* LEFT – HERO SECTION */}
+      <div className="register-hero">
+        <h1>Elite Drive</h1>
+        <h2>Car Rental Website</h2>
+        <p>
+          Your journey, your car, your way.  
+          Experience premium rentals with Elite Drive.
+        </p>
 
-      <input
-        placeholder="Name"
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br /><br />
+        <img
+          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+          alt="Luxury Car"
+        />
+      </div>
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br /><br />
+      {/* RIGHT – REGISTER FORM */}
+      <div className="register-form">
+        <h2>REGISTER</h2>
+        <p className="subtitle">Create your Elite Drive account</p>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br /><br />
+        <input
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
 
-      <button onClick={handleRegister}>Register</button>
+        <input
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button onClick={handleRegister}>Register</button>
+
+        <p className="login-link">
+          Already have an account?{" "}
+          <span onClick={() => (window.location.href = "/")}>
+            Login
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

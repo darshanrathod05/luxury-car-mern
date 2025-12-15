@@ -1,0 +1,90 @@
+.register-page {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* LEFT HERO SECTION */
+.register-hero {
+  flex: 1;
+  background: linear-gradient(135deg, #ff2d2d, #ff5f5f);
+  color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-hero h1 {
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
+.register-hero h2 {
+  font-size: 44px;
+  margin: 15px 0;
+}
+
+.register-hero p {
+  max-width: 400px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.register-hero img {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 420px;
+  align-self: center;
+}
+
+/* RIGHT FORM SECTION */
+.register-form {
+  flex: 1;
+  background: #ffffff;
+  padding: 80px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-form h2 {
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.register-form input {
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+.register-form button {
+  margin-top: 10px;
+  padding: 12px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.register-form button:hover {
+  background: #333;
+}
+
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-link span {
+  color: #ff2d2d;
+  cursor: pointer;
+  font-weight: bold;
+}

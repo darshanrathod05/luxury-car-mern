@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import API from "../services/api";
+import "./FormTemplate.css";
 
 function AdminAddCar() {
   const [brand, setBrand] = useState("");
@@ -8,7 +9,27 @@ function AdminAddCar() {
   const [price, setPrice] = useState("");
   const [image, setImage] = useState(null);
 
+  // 🔐 Admin protection
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/";
+      return;
+    }
+
+    const decoded = JSON.parse(atob(token.split(".")[1]));
+    if (decoded.role !== "admin") {
+      alert("Admins only");
+      window.location.href = "/cars";
+    }
+  }, []);
+
   const handleAddCar = async () => {
+    if (!image) {
+      alert("Please select an image");
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append("brand", brand);
@@ -18,35 +39,45 @@ function AdminAddCar() {
       formData.append("image", image);
 
       await API.post("/cars", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
+        headers: { "Content-Type": "multipart/form-data" }
       });
 
       alert("Car added successfully!");
       window.location.href = "/cars";
     } catch (err) {
-      alert("Only admin can add cars");
+      alert("Failed to add car");
     }
   };
 
   return (
-    <div>
-      <h2>Add Car (Admin)</h2>
+    <div className="form-container">
+      {/* LEFT IMAGE */}
+      <div className="form-image">
+        <img
+          src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=900&q=80"
+          alt="Admin Car"
+        />
+        <h3>Elite Drive</h3>
+      </div>
 
-      <input placeholder="Brand" onChange={e => setBrand(e.target.value)} /><br /><br />
-      <input placeholder="Model" onChange={e => setModel(e.target.value)} /><br /><br />
-      <input placeholder="Rent Per Day" onChange={e => setRentPerDay(e.target.value)} /><br /><br />
-      <input placeholder="Price" onChange={e => setPrice(e.target.value)} /><br /><br />
+      {/* RIGHT FORM */}
+      <div className="form-box">
+        <h2>ADD CAR</h2>
+        <p className="subtitle">Admin dashboard</p>
 
-      <input
-        type="file"
-        accept="image/*"
-        onChange={e => setImage(e.target.files[0])}
-      />
-      <br /><br />
+        <input placeholder="Brand" onChange={(e) => setBrand(e.target.value)} />
+        <input placeholder="Model" onChange={(e) => setModel(e.target.value)} />
+        <input placeholder="Rent Per Day" onChange={(e) => setRentPerDay(e.target.value)} />
+        <input placeholder="Price" onChange={(e) => setPrice(e.target.value)} />
 
-      <button onClick={handleAddCar}>Add Car</button>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+
+        <button onClick={handleAddCar}>Add Car</button>
+      </div>
     </div>
   );
 }
