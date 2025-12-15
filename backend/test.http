@@ -1,0 +1,58 @@
+### Register User
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Ravan",
+  "email": "Ravan@gmail.com",
+  "password": "123456"
+}
+### Login User
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "Ravan@gmail.com",
+  "password": "123456"
+}
+
+### Add Luxury Car
+POST http://localhost:5000/api/cars
+Content-Type: application/json
+
+{
+  "brand": "Audi",
+  "model": "A6",
+  "rentPerDay": 10000,
+  "price": 7000000
+}
+
+### Get All Cars
+GET http://localhost:5000/api/cars
+
+### Create Booking
+POST http://localhost:5000/api/bookings
+Content-Type: application/json
+
+{
+  "userId": "69404e143ffc3fd8acaeb9cc",
+  "carId": "694052c9afe8fbfe3a4f6f2f",
+  "startDate": "2025-12-16",
+  "endDate": "2025-12-18"
+}
+
+### Add Car (Admin)
+POST http://localhost:5000/api/cars
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDA0ZTE0M2ZmYzNmZDhhY2FlYjljYyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTgyNDQ2MCwiZXhwIjoxNzY1OTEwODYwfQ.Lsb7h-zPN2ApPrc1D_YkIdLI6pYBpcNqtf4dG0PMkm4
+Content-Type: application/json
+
+{
+  "brand": "BMW",
+  "model": "X7",
+  "rentPerDay": 14000,
+  "price": 11000000
+}
+
+
+
+
