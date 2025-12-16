@@ -4,7 +4,7 @@ const Car = require("../models/Car");
 const adminMiddleware = require("../middleware/adminMiddleware");
 const multer = require("multer");
 
-/* IMAGE UPLOAD SETUP */
+/* ================= IMAGE UPLOAD SETUP ================= */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
@@ -16,13 +16,32 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-/* GET ALL CARS */
+/* ================= GET ALL CARS ================= */
 router.get("/", async (req, res) => {
-  const cars = await Car.find();
-  res.json(cars);
+  try {
+    const cars = await Car.find();
+    res.json(cars);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch cars" });
+  }
 });
 
-/* ADD CAR (ADMIN ONLY) */
+/* ================= GET SINGLE CAR (IMPORTANT) ================= */
+router.get("/:id", async (req, res) => {
+  try {
+    const car = await Car.findById(req.params.id);
+
+    if (!car) {
+      return res.status(404).json({ message: "Car not found" });
+    }
+
+    res.json(car);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch car" });
+  }
+});
+
+/* ================= ADD CAR (ADMIN ONLY) ================= */
 router.post("/", adminMiddleware, upload.single("image"), async (req, res) => {
   try {
     const car = new Car({
@@ -34,9 +53,24 @@ router.post("/", adminMiddleware, upload.single("image"), async (req, res) => {
     });
 
     await car.save();
-    res.json(car);
+    res.status(201).json(car);
   } catch (err) {
     res.status(500).json({ message: "Failed to add car" });
+  }
+});
+
+/* ================= DELETE CAR (ADMIN ONLY) ================= */
+router.delete("/:id", adminMiddleware, async (req, res) => {
+  try {
+    const car = await Car.findByIdAndDelete(req.params.id);
+
+    if (!car) {
+      return res.status(404).json({ message: "Car not found" });
+    }
+
+    res.json({ message: "Car deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to delete car" });
   }
 });
 

@@ -12,3 +12,4 @@ router.get("/", protect, adminOnly, getBookings); // admin only
 
 module.exports = router;
 
+

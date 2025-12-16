@@ -72,3 +72,16 @@
 .form-box button:hover {
   opacity: 0.9;
 }
+
+.price-box {
+  margin: 15px 0;
+  padding: 12px;
+  background: #e8f5e9;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.price-box span {
+  color: #2e7d32;
+  font-weight: bold;
+}

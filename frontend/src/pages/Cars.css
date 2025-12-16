@@ -22,6 +22,26 @@
   font-weight: bold;
 }
 
+/* RIGHT ACTIONS */
+.nav-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* ADD CAR LINK */
+.add-car-link {
+  color: white;
+  text-decoration: none; /* remove underline */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-car-link:hover {
+  text-decoration: underline;
+}
+
+/* LOGOUT */
 .nav-right {
   cursor: pointer;
   font-weight: bold;
@@ -84,18 +104,47 @@
   color: #555;
 }
 
-/* BOOK BUTTON (COLORED) */
+/* BUTTON GROUP */
+.car-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* BOOK BUTTON */
+/* BOOK BUTTON */
 .book-btn {
-  width: 100%;
-  padding: 10px;
+  width: auto;
+  padding: 6px 14px;          /* smaller */
   background: #2e7d32;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;            /* smaller text */
+  font-weight: 500;
 }
 
 .book-btn:hover {
   background: #1b5e20;
 }
+
+
+
+/* DELETE BUTTON (ADMIN) */
+.delete-btn {
+  width: auto;
+  padding: 6px 14px;          /* smaller */
+  background: linear-gradient(135deg, #e53935, #c62828);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;            /* smaller text */
+  font-weight: 500;
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #c62828, #b71c1c);
+}
+
